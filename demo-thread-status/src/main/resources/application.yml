@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: quickstart
+  profiles:
+    active: dev
+  cloud:
+    sentinel:
+      enabled: true
+      transport:
+        dashboard: 127.0.0.1:8080      
+feign: 
+  okhttp:
+    enabled: true

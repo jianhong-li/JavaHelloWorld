@@ -1,0 +1,30 @@
+spring:
+  datasource: 
+    driver-class-name: com.mysql.cj.jdbc.Driver 
+    url: jdbc:mysql://127.0.0.1:3306/flyingcattle?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC
+    username: ENC(Jem0ulo76WGeVLRLxPWZ5ol1dlyIeNyV)
+    password: ENC(z05FR7flVHWxk717o4FSq6diDoSIeVDW)
+  redis: 
+    database: 0
+    host: 47.110.255.17
+    port: 6379
+    password: ENC(vLO1gMzlZby14wGEBMedWKc7v29Uh3qgqyrVIZ+zaPk=)
+    lettuce:
+      shutdown-timeout: 1000
+      pool:
+        max-active: 1024
+        max-wait: 10000
+        max-idle: 200
+            
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 数据库用户和密码加密
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES #加密算法
+    password: kinbugpwd  #加密的key
+    
+swagger: 
+  enable: true
