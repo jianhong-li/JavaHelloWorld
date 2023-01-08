@@ -4,37 +4,41 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.example</groupId>
+  <parent>
+    <groupId>com.cityminsu.common</groupId>
+    <artifactId>cityminsu-supom-nexus</artifactId>
+    <version>0.0.28</version>
+  </parent>
+
+  <groupId>com.jianhongl.fresh</groupId>
   <artifactId>JavaHelloWorld</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>demo-thread-status</module>
-  </modules>
+  <version>1.0.0</version>
+
   <packaging>pom</packaging>
 
   <name>JavaHelloWorld</name>
-  <url>http://www.example.com</url>
+  <url>https://firfor.cn</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+
+    <!-- 定义为变量,便于引用与覆盖 -->
+    <cityminsu.nexus.releases>https://mvn.firfor.cn/nexus/content/repositories/releases</cityminsu.nexus.releases>
+    <cityminsu.nexus.snapshots>https://mvn.firfor.cn/nexus/content/repositories/snapshots</cityminsu.nexus.snapshots>
+
   </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.7.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>5.7.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+
+  <modules>
+    <module>demo-thread-status</module>
+    <module>demo-io-model</module>
+  </modules>
+
+  <!--
+   注: 此Demo工程尽量在子模块间不共享依赖. 这里定义一些最基础的运行环境依赖,同时完全依赖开源环境. 确保代码在所有的环境下都可以编译运行
+   -->
 
   <build>
     <plugins>
