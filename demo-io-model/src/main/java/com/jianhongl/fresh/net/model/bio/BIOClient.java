@@ -21,6 +21,9 @@ public class BIOClient {
         //拿到输出流 -- client write to server
         OutputStream out = socket.getOutputStream();
 
+        System.out.println("BIO连接成功,待待10秒后进行通信....");
+        Thread.sleep(10000);
+
         byte[] send = "hello".getBytes();
         while (true){
             //client write to server
