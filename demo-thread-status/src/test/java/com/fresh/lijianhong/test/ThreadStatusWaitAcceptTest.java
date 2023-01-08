@@ -3,8 +3,9 @@ package com.fresh.lijianhong.test;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
+
 
 /**
  * @author lijianhong Date: 2022/12/27 Time: 4:36 PM
@@ -42,7 +43,7 @@ public class ThreadStatusWaitAcceptTest {
         Thread.sleep(500);
 
         // 状态为RUNNABLE
-        Assertions.assertEquals(serverThread.getState(), Thread.State.RUNNABLE);
+        Assert.assertEquals(serverThread.getState(), Thread.State.RUNNABLE);
 
     }
 
