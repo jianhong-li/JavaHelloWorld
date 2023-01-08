@@ -1,4 +1,4 @@
-package com.fresh.lijianhong;
+package com.fresh.lijianhong.thread.status;
 
 import java.util.Scanner;
 import org.apache.commons.io.IOUtils;
