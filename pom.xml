@@ -35,6 +35,7 @@
     <module>demo-thread-status</module>
     <module>demo-io-model</module>
     <module>demo-digester</module>
+    <module>demo-async-servlet</module>
   </modules>
 
   <!--
