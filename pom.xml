@@ -36,6 +36,7 @@
     <module>demo-io-model</module>
     <module>demo-digester</module>
     <module>demo-async-servlet</module>
+      <module>demo-misc</module>
   </modules>
 
   <!--
