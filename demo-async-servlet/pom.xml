@@ -13,6 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javax_servlet_api_version>3.1.0</javax_servlet_api_version>
     </properties>
 
     <dependencies>
@@ -46,11 +47,6 @@
         </resources>
 
         <plugins>
-            <!-- 默认承继此插件:用于生成 Mybatis 代码 -->
-            <plugin>
-                <groupId>com.tujia.share.plugin</groupId>
-                <artifactId>tujia-code-generator-maven-plugin</artifactId>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -87,18 +83,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-
-            <!-- 用于生成 mybatis 代码  -->
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-            </plugin>
-
-            <!-- 代码测试可以用 Jetty 插件启动 -->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
             </plugin>
 
             <plugin>

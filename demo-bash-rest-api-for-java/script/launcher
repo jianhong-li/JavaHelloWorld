@@ -1,0 +1,71 @@
+#!/bin/bash
+
+echo "执行命令: $0 $*" 1>&2
+# 定位到当前脚本目录:
+
+
+LAUNCHER_DIR="$(
+  cd "$(dirname "$0")"
+  pwd
+)"
+
+cd "$LAUNCHER_DIR" || {
+  echo "项目运行环境错误:${LAUNCHER_DIR}" 1>&2
+  exit 1
+}
+
+echo "LAUNCHER_DIR:${LAUNCHER_DIR}" 1>&2
+
+. ./json_base.sh
+
+# 脚本说明:
+
+# shellcheck disable=SC2016
+help_msg='启动命令: bash /path/to/launcher --script "script_name" --action "action_name"  --json {}  [-x]'
+json_parm=$(JSON_PARAM "$@")                # --json     '{"key":"value"}'
+script_name=$(LAUNCHER_PARAM_SCRIPT "$@")   # --script   'script_name': default|infra_api
+script_action=$(LAUNCHER_PARAM_ACTION "$@") # --action  echo
+
+
+printf "============CONF PARAM ==========\n\$script_name:%s<=\n=================================\n" "$script_name" 1>&2
+printf "============JSON PARAM ==========\n%s\n=================================\n" "$(echo "${json_parm}" | jq .)" 1>&2
+
+
+if [[ -z "${script_name}" ]]; then
+  API_RESPONSE_RETURN false "工作脚本名未指定.无法运行,调用格式:${help_msg}"
+  exit 1
+fi
+
+if [[ "$script_name" == default ]]; then
+  . ./json_api.sh # 调用工作流
+fi
+
+
+resp=""
+code=0
+
+case $script_name in
+
+default)
+  case $script_action in
+  # 初始化环境
+  echo)
+    echo "call rest_api: [echo]" 1>&2
+    resp=$(rest_api_echo "$json_parm")
+    code=$?
+    if [[ $code -eq 0 ]]; then
+      echo "${resp}"
+      exit 0
+    else
+      API_RESPONSE_RETURN false "$code" "code:${code}" null
+      exit 1
+    fi
+    ;;
+  *)
+    API_RESPONSE_RETURN false "未知action,无法执行命令:${script_action},启动命令:${help_msg}"
+    exit 1
+    ;;
+  esac
+  ;;
+
+esac

@@ -19,21 +19,14 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <com.fasterxml.jackson.version>2.5.1</com.fasterxml.jackson.version>
         <tns.house.system.framework>1.0.2</tns.house.system.framework>
-        <tagName>RBA-FRAMEWORK</tagName>
-        <rocketmq.client>4.2.6</rocketmq.client>
-        <pagehelper.version>4.0.1</pagehelper.version>
         <javax.el.version>3.0.1-b08</javax.el.version>
         <maven_tests_skip>true</maven_tests_skip>
         <io_protostuff_version>1.5.9</io_protostuff_version>
         <jackson-datatype-joda.version>2.9.9</jackson-datatype-joda.version>
-
-        <com.cityminsu.redis.version>2.0.0</com.cityminsu.redis.version>
-        <tc.rocketmq.client.version>2.0.0</tc.rocketmq.client.version>
-        <tc.apollo.client.version>2.0.0</tc.apollo.client.version>
 
     </properties>
 
@@ -69,254 +62,13 @@
             </dependency>
 
 
-            <dependency>
-                <artifactId>cityminsumq-client</artifactId>
-                <groupId>com.cityminsu.rocketmq</groupId>
-                <version>${tc.rocketmq.client.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.cityminsu.tc.config</groupId>
-                <artifactId>apollo-client</artifactId>
-                <version>${tc.apollo.client.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <!--apollo-->
-        <dependency>
-            <groupId>com.cityminsu.tc.config</groupId>
-            <artifactId>apollo-client</artifactId>
-            <optional>true</optional>
-        </dependency>
 
 
-        <!--oss client-->
-        <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-            <optional>true</optional>
-        </dependency>
 
-        <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-core</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-
-        <!--Jackson标签的依赖-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-
-        <!--rocketmq-->
-        <dependency>
-            <artifactId>cityminsumq-client</artifactId>
-            <groupId>com.cityminsu.rocketmq</groupId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-
-        <!--
-         依赖说明:
-            hibernate validate 会依赖 el-api.此包一般由容器提供.
-            因此,这里加入一个 el-api 的实现包.作用域为 TEST. 打包
-            时不会添加进入依赖.
-        -->
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.el</artifactId>
-            <version>${javax.el.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- 由容器提供 -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${springframework_version}</version>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- <dependency>
-             <groupId>com.cityminsu.tc.config</groupId>
-             <artifactId>apollo-client</artifactId>
-         </dependency>
- -->
-
-        <!-- ~~~~~~~~~~~~~~~~~ 作为可选功能依赖,使用者在自己的项目里面引入 ~~~~~~~~~~~~~~-->
-
-        <!-- 只有使用到阿里云相关的MQ消息时,才需要引入此包 -->
-        <dependency>
-            <groupId>com.aliyun.openservices</groupId>
-            <artifactId>ons-client</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- 定时任务相关抽象类父类,需要此功能者引入 -->
-        <dependency>
-            <groupId>com.tujia.tc</groupId>
-            <artifactId>xxl-job-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>javax.servlet-api</artifactId>
-                    <groupId>javax.servlet</groupId>
-                </exclusion>
-            </exclusions>
-            <!-- 由于 TC_BOM 里面的版本过旧,这里先写上版本号 -->
-            <version>0.0.2</version>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- CRM 相关的接口的一些功能的引入,为了不引入不必要的重复类处理,这里也写为可选,需要者自行引入 -->
-        <dependency>
-            <groupId>com.tujia.framework</groupId>
-            <artifactId>framework-common</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- Quartz ,需要使用到原生的定时任务相关的功能时,自行引入-->
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-
-        <!-- tc_monitor -->
-        <!--需要使用到 TMonitor 的地方自行引入-->
-        <dependency>
-            <groupId>com.tujia.common.monitor</groupId>
-            <artifactId>monitor-client</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- redis default 1.0.8 -->
-        <!--作为可选功能,依赖版本由使用方提供-->
-        <dependency>
-            <groupId>com.cityminsu.redis</groupId>
-            <artifactId>redis-access</artifactId>
-            <version>${com.cityminsu.redis.version}</version>
-            <optional>true</optional>
-        </dependency>
-
-
-        <!--swift-->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
-
-        <!-- 分页插件包 -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!--GooGle protobuf 序列化-->
-        <dependency>
-            <groupId>io.protostuff</groupId>
-            <artifactId>protostuff-core</artifactId>
-            <version>${io_protostuff_version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.protostuff</groupId>
-            <artifactId>protostuff-runtime</artifactId>
-            <version>${io_protostuff_version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.tujia.common</groupId>
-            <artifactId>focus-client</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-joda</artifactId>
-            <version>${jackson-datatype-joda.version}</version>
-        </dependency>
-
-        <!-- <dependency>
-             <groupId>com.tujia.tc</groupId>
-             <artifactId>userInfoPad</artifactId>
-             <optional>true</optional>
-         </dependency>-->
 
     </dependencies>
 
