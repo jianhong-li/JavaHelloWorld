@@ -58,6 +58,7 @@
     <module>demo-async-servlet</module>
     <module>demo-misc</module>
     <module>demo-bash-rest-api-for-java</module>
+    <module>demo-cache</module>
   </modules>
 
   <!--

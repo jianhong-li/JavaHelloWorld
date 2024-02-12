@@ -6,7 +6,7 @@ public class TheadStatusWhenSleepInSinglePool {
 
     private static Thread a = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         ThreadPoolExecutor executor = getThreadPoolExecutor();
 
@@ -14,7 +14,7 @@ public class TheadStatusWhenSleepInSinglePool {
             try {
                 System.out.println("start to sleep....");
                 a = Thread.currentThread();
-                Thread.sleep(10000);
+                Thread.sleep(3000);
                 System.out.println("sleep end....");
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -33,6 +33,13 @@ public class TheadStatusWhenSleepInSinglePool {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        Thread.sleep(3000);
+
+        System.out.println("thread status isTerminated:" + executor.isTerminated());
+
+        executor.shutdown();
+
     }
 
     private static ThreadPoolExecutor getThreadPoolExecutor() {
