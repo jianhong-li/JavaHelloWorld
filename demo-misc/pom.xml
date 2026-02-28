@@ -37,6 +37,50 @@
             <version>${rxjava3.version}</version>
         </dependency>
 
+        <!--  PDFBOX 依赖引入: 官方地址:  https://pdfbox.apache.org/download.html     -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.27</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-tools</artifactId>
+            <version>2.0.27</version>
+        </dependency>
+
+        <!--  如果使用  itextpdf,则 pdf 渲染需要使用额外的库进行. 反之.如果此时只需要渲染. 那也只需要引入 icepdf-core 就可以
+        <dependency>
+             <groupId>com.itextpdf</groupId>
+             <artifactId>itext7-core</artifactId>
+             <version>7.2.3</version>
+         </dependency>-->
+        <dependency>
+            <groupId>org.icepdf.os</groupId>
+            <artifactId>icepdf-core</artifactId>
+            <version>6.1.2</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!--  maven resource plugin 3.2.0 版本以上, 可以使用过滤器来替换资源文件中的占位符-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
