@@ -22,7 +22,7 @@ public class ByteBufferReadTest {
 
     private static Logger logger = LoggerFactory.getLogger(ByteBufferReadTest.class);
 
-    //@Test
+    @Test
     public void testBuffer() throws IOException, URISyntaxException {
         System.out.println("===========================test start=====================================");
         byte[] source = new byte[256];
